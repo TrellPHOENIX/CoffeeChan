@@ -22,7 +22,7 @@ include 'includes/head.php';
         ?>
           <div class="card-box mb-5" style="width: 65rem; padding: 2rem 2rem; height: 38%;">
             <div class="row">
-              <div class=" col-10 col-sm-8 col-lg-3 px-0">
+              <div class="col-10 col-sm-8 col-lg-3 px-0">
                 <div class="imgW">
                   <img class="d-block mx-0 img-fluid" alt="Person-1" width="250" loading="lazy" src="<?= $res['image']; ?>" />
                 </div>
