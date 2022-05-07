@@ -1,19 +1,24 @@
 <?php
-    require "connect.php";
 
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $category = $_POST['category'];
-    $text = $_POST['text'];
-    $image = $_POST['image'];
-     
-    // $error = '';
-    // if (strlen($title) < 10) $error = "Заголовок должен содержать не менее 10 символов";
-    // else if (strlen($text) < 30) $error = "Текст должен содержать не менее 30 символов";
-    if ($error) {
-        echo $error;
-        exit();
-    } else {
-        $connection -> query("UPDATE `articles` SET `title` = '$title', `category` = '$category', `text` = '$text', `image` = '$filename'");
-        header('location: /myarticles.php');
-    }
+function can_upload($file){
+  if($file['name'] == '')
+      return 'Вы не выбрали файл.';
+
+  $getMime = explode('.', $file['name']);
+  $mime = strtolower(end($getMime));
+  $types = array('jpg', 'png', 'gif', 'bmp', 'jpeg');
+  if(!in_array($mime, $types))
+      return 'Недопустимый тип файла.';
+  return true;
+}
+
+function make_upload($file, $text, $title, $category, $author){	
+      require "connect.php";
+
+  $name = mt_rand(0, 5) . $file['name'];
+  copy($file['tmp_name'], 'image/' . $name);
+  $filename ='image/' . $name;
+
+  $connection -> query("UPDATE `articles` SET `title` = '$title', `category` = '$category', `text` = '$text', `image` = '$filename'");		
+  header('location: /myarticles.php');
+}

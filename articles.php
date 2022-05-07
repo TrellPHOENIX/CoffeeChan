@@ -29,7 +29,7 @@ include 'includes/head.php';
               </div>
               <div class="col-md-9 px-4">
                 <h4><?= $res['title']; ?></h4>
-                <p class="text-macrticle"><?= $res['text']; ?></p>
+                <p class="text-macrticle" style="white-space: nowrap; overflow: hidden;"><?= $res['text']; ?></p>
                 <div class="box-category-adviсe">
                   <p class="text-macrticle"><?= $res['category']; ?></p>
                 </div>

@@ -23,20 +23,17 @@ include 'includes/head.php';
             <div class="card-body text-center pb-5">
               <h3>Редактировать статью</h3>
             </div>
-            <form id="regForm" action="/includes/edit.php" method="POST">
+            <?php
+                include_once 'includes/edit.php';
+              ?>
+            <form method="post" enctype="multipart/form-data">
               <div class="mb-3">
                 <label for="caption" class="mb-1 px-3">Введите заголовок</label>
                 <input type="text" name="title" id="title" class="form-control-entry" placeholder="Заголовок" value="<?=$res['title'];?>">
               </div>
               <div class="mb-3">
-                <label  for="category" class="mb-1 px-3">Выберите категорию</label>  
-                <select class="form-select" aria-label="Default select example">
-                  <option type="category" name="category" id="category" value="<?=$res['category'];?>" selected>Категория</option>
-                  <option value="1">Интересные истории</option>
-                  <option value="2">Рецепты кофе</option>
-                  <option value="3">Советы по приготовлению</option>
-                  <option value="3">Кофе и здоровье</option>
-                </select>
+                <label for="category" class="mb-1 px-3">Введите категорию</label>  
+                <input type="text" name="category" id="category" class="form-control-entry" placeholder="Категория">
               </div>
               <div class="mb-4">
                 <textarea name="text" id="text" class="form-control text-control" placeholder="Содержимое"><?=$res['text'];?></textarea>
@@ -47,6 +44,17 @@ include 'includes/head.php';
                 <a href="/myarticles.php" type="submit" id="authBtn" class="btn disabl-btn w-30 mb-4">Отмена</a>
               </div>
             </form>
+                        <?php
+              if(isset($_FILES['file'])) {
+                $check = can_upload($_FILES['file']);           
+                if($check === true){
+                  make_upload($_FILES ['file'], $_POST['text'], $_POST['title'], $_POST['category'], $_POST['author']) ;             
+                }
+                else{
+                  echo "<strong>$check</strong>";  
+                }
+              }
+              ?>
           </div>
         </div>
       </div>

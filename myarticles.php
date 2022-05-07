@@ -34,7 +34,7 @@ include 'includes/head.php';
             </div>
           </div>
           <div class="d-flex">
-            <p class="text-macrticle"><?= $res['text']; ?></p>
+            <p class="text-macrticle" style="white-space: nowrap; overflow: hidden; "><?= $res['text']; ?></p>
           </div>
           <div class="d-flex align-items-center justify-content-between text-center">
             <div class="fa-bx-time">
@@ -44,7 +44,7 @@ include 'includes/head.php';
             <div class="d-flex align-items-center justify-content-center text-center">
               <a href="/includes/deletepost.php?id=<?= $res['id']; ?>" class="btn disabl-btn w-50 mb-4">Удалить</a>
               <a href="/edit.php" class="btn brand-btn w-50 mb-4">Редактировать</a>
-              <button type="submit" id="authBtn" class="btn entry-btn w-50 mb-4">Посмотреть</button>
+              <a href="/article.php" type="submit" id="authBtn" class="btn entry-btn w-50 mb-4">Посмотреть</a>
             </div>
           </div>
         </div>
